@@ -1,0 +1,81 @@
+---
+pipelines:
+  - name: verify
+    triggers:
+      - event: DRAFT_PUBLISHED
+      - event: PATCHSET_CREATED
+      - event: CHANGE_RESTORED
+      - event: COMMENT_ADDED
+        commentFilter: (?i)^(Patch Set [0-9]+:)?( [\w\\+-]*)*(\n\n)?\s*(recheck|reverify)
+    onStart:
+      - approval: VERIFIED
+        score: 0
+    onSuccess:
+      - approval: VERIFIED
+        score: 1
+    onFailure:
+      - approval: VERIFIED
+        score: -1
+  - name: qa
+    triggers:
+      - event: DRAFT_PUBLISHED
+      - event: PATCHSET_CREATED
+      - event: CHANGE_RESTORED
+      - event: COMMENT_ADDED
+        commentFilter: (?i)^(Patch Set [0-9]+:)?( [\w\\+-]*)*(\n\n)?\s*(recheck( qa)?)
+    onStart:
+      - approval: QUALITY_ASSURANCE
+        score: 0
+    onSuccess:
+      - approval: QUALITY_ASSURANCE
+        score: 1
+    onFailure:
+      - approval: QUALITY_ASSURANCE
+        score: -1
+  - name: post
+    triggers:
+      - event: COMMENT_ADDED
+        commentFilter: (?i)^(Patch Set [0-9]+:)?( [\w\\+-]*)*(\n\n)?\s*(revalidate)
+      - event: COMMENT_ADDED
+        approvals:
+          - approval: CODE_REVIEW
+            score: 2
+          - approval: QUALITY_ASSURANCE
+            score: 1
+          - approval: WORKFLOW
+            score: 1
+          - approval: VERIFIED
+            score: 1
+    onStart:
+      - approval: VERIFIED
+        score: 0
+    onSuccess:
+      - approval: VERIFIED
+        score: 2
+      - approval: SUBMIT
+    onFailure:
+      - approval: VERIFIED
+        score: -2
+
+projects:
+  - name: ^games/.*$
+    verify:
+      - verify-pep8
+    qa:
+      - noop
+    post:
+      - verify-pep8
+  - name: ^linaDevel/nemesis$
+    verify:
+      - verify-nemesis
+    qa:
+      - noop
+    post:
+      - gate-nemesis
+  - name: ^linaDevel/nemesisConfig$
+    verify:
+      - gate-validate-nemesis-config
+    qa:
+      - noop
+    post:
+      - gate-install-nemesis-config

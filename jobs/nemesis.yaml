@@ -1,0 +1,29 @@
+jobs:
+  - name: verify-nemesis
+    builders:
+     MavenBuilder:
+      target:
+       - clean
+       - compile
+       - assembly:single
+      copyJar: true
+  - name: gate-nemesis
+    builders:
+     MavenBuilder:
+      target:
+       - clean
+       - compile
+       - assembly:single
+      copyJar: true
+    publishers:
+     LocalPublisher:
+      source: '*.jar'
+      target: /var/www/artifacts/nemesis/
+  - name: gate-validate-nemesis-config
+    builders:
+     NemesisConfigInstaller:
+      installConfig: false
+  - name: gate-install-nemesis-config
+    builders:
+     NemesisConfigInstaller:
+      installConfig: true

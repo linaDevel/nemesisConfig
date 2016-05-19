@@ -1,0 +1,7 @@
+jobs:
+  - name: verify-pep8
+    builders:
+     ShellBuilder:
+      script: |
+        pip install pep8
+        pep8 ${WORKSPACE}/source/
