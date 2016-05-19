@@ -1,8 +1,8 @@
 jobs:
   - name: verify-nemesis
-    builders:
+    buildersq:
      MavenBuilder:
-      target:
+      targets:
        - clean
        - compile
        - assembly:single
