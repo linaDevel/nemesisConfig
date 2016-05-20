@@ -1,0 +1,20 @@
+jobs:
+  - name: gate-verify-yggdrasil
+    builders:
+     MavenBuilder:
+      target:
+       - clean
+       - compile
+       - assembly:single
+      copyJar: true
+  - name: gate-build-yggdrasil
+    builders:
+     MavenBuilder:
+      target:
+       - clean
+       - compile
+       - assembly:single
+    publishers:
+     LocalPublisher:
+      source: '*.jar'
+      target: /var/www/artifacts/yggdrasil 
