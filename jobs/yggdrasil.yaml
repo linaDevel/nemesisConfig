@@ -14,6 +14,7 @@ jobs:
        - clean
        - compile
        - assembly:single
+      copyJar: true
     publishers:
      LocalPublisher:
       source: '*.jar'
