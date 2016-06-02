@@ -5,8 +5,7 @@ jobs:
       target:
        - clean
        - compile
-       - assembly:single
-      copyJar: true
+      copyJar: false
   - name: gate-build-yggdrasil
     builders:
      MavenBuilder:
@@ -14,6 +13,7 @@ jobs:
        - clean
        - compile
        - assembly:single
+       - deploy
       copyJar: true
     publishers:
      LocalPublisher:
