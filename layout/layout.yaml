@@ -79,7 +79,7 @@ projects:
       - noop
     post:
       - gate-install-nemesis-config
-  - name: ^yggdrasilProject/yggdrasilCore$
+  - name: ^yggdrasilProject/.*$
     verify:
       - gate-verify-yggdrasil
     qa:
