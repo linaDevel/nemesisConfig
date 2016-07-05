@@ -79,6 +79,13 @@ projects:
       - noop
     post:
       - gate-install-nemesis-config
+  - name: ^linaDevel/darkGerritTheme$
+    verify:
+      - noop
+    qa:
+      - noop
+    post:
+      - noop
   - name: ^yggdrasilProject/.*$
     verify:
       - gate-verify-yggdrasil
