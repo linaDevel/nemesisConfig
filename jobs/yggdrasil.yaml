@@ -18,4 +18,5 @@ jobs:
     publishers:
      LocalPublisher:
       source: '*.jar'
-      target: /var/www/artifacts/yggdrasil 
+      target: /var/www/artifacts/yggdrasil
+      checksum: true
