@@ -85,7 +85,7 @@ projects:
     qa:
       - gate-check-trailing-whitespaces
     post:
-      - noop
+      - post-install-gerrit-theme
   - name: ^yggdrasilProject/.*$
     verify:
       - gate-verify-yggdrasil

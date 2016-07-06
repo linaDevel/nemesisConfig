@@ -1,0 +1,13 @@
+jobs:
+ - name: post-install-gerrit-theme
+   builders:
+    ShellBuilder:
+     script: |
+      #!/bin/bash -xe
+
+      cp -v ${WORKSPACE}/source/etc/GerritSite*.html /var/gerrit/etc/
+      cp -v ${WORKSPACE}/source/etc/GerritSite.css /var/gerrit/etc/
+      cp -Rv ${WORKSPACE}/source/static/* /var/gerrit/static/
+
+      chown gerrit:gerrit -R /var/gerrit/etc
+      chown gerrit:gerrit -R /var/gerrit/static
