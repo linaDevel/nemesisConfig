@@ -62,34 +62,34 @@ projects:
     verify:
       - verify-pep8
     qa:
-      - gate-check-trailing-whitespaces
+      - noop
     post:
       - verify-pep8
   - name: ^linaDevel/nemesis$
     verify:
       - verify-nemesis
     qa:
-      - gate-check-trailing-whitespaces
+      - noop
     post:
       - gate-nemesis
   - name: ^linaDevel/nemesisConfig$
     verify:
       - gate-validate-nemesis-config
     qa:
-      - gate-check-trailing-whitespaces
+      - noop
     post:
       - gate-install-nemesis-config
   - name: ^linaDevel/darkGerritTheme$
     verify:
       - noop
     qa:
-      - gate-check-trailing-whitespaces
+      - noop
     post:
       - noop
   - name: ^yggdrasilProject/.*$
     verify:
       - gate-verify-yggdrasil
     qa:
-      - gate-check-trailing-whitespaces
+      - noop
     post:
       - gate-build-yggdrasil
