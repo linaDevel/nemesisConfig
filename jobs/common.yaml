@@ -3,4 +3,14 @@ jobs:
    voting: false
    builders:
     ShellBuilder:
-     script: (grep -Irl '[[:blank:]]$' ./* && echo "Trailing whitespaces found!" && exit 1) || (echo "OK" && exit 0)
+     script: | 
+      #!/bin/bash -xe
+      RES=$(grep -Irl '[[:blank:]]$' ./source/*)
+      if [[ $? -eq 0 ]]; then
+        echo "Trailing whitespaces found:"
+        echo -e "${RES}"
+        exit 1
+      else 
+        echo "OK"
+        exit 0
+      fi
