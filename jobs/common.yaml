@@ -1,6 +1,6 @@
 jobs:
  - name: gate-check-trailing-whitespaces
-   voting: false
+   voting: true
    builders:
     ShellBuilder:
      script: |
