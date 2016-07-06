@@ -4,7 +4,7 @@ jobs:
    builders:
     ShellBuilder:
      script: | 
-      #!/bin/bash -xe
+      set +e
       RES=$(grep -Irl '[[:blank:]]$' ./source/*)
       if [[ $? -eq 0 ]]; then
         echo "Trailing whitespaces found:"
