@@ -5,12 +5,14 @@ jobs:
     ShellBuilder:
      script: |
       set +e
-      RES=$(grep -Irl '[[:blank:]]$' ./source/*)
+
+      echo "List of files with trailing whitespaces:"
+      grep --exclude-dir ".git" -Irl '[[:blank:]]$' ./source
+      sleep 1
       if [[ $? -eq 0 ]]; then
-        echo "Trailing whitespaces found:"
-        echo -e "${RES}"
+        echo "Trailing whitespaces found!"
         exit 1
       else
-        echo "OK"
+        echo "No files found!"
         exit 0
       fi
