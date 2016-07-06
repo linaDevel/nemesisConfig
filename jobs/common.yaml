@@ -1,0 +1,6 @@
+jobs:
+ - name: gate-check-trailing-whitespaces
+   voting: false
+   builders:
+    ShellBuilder:
+     script: (grep -Irl '[[:blank:]]$' ./* && echo "Trailing whitespaces found!" && exit 1) || (echo "OK" && exit 0)
