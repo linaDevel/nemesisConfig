@@ -17,3 +17,18 @@ jobs:
         sleep 1
         exit 0
       fi
+ - name: gate-check-shell-scripts
+   builders:
+    ShellBuilder:
+     script: |
+      #!/bin/bash -xe
+      for script in $(find "${WORKSPACE}/source/" -name *.sh); do
+        shellcheck $script -e SC2086,SC2016,SC2034,SC2046,SC2140
+      done
+ - name: gate-check-python-pep8
+   builders:
+    ShellBuilder:
+     script: |
+      #!/bin/bash -xe
+      pip install pep8
+      pep8 ${WORKSPACE}/source/

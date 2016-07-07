@@ -60,36 +60,60 @@ pipelines:
 projects:
   - name: ^games/.*$
     verify:
-      - verify-pep8
+      - noop
     qa:
+      - gate-check-python-pep8
+      - gate-check-shell-scripts
       - gate-check-trailing-whitespaces
     post:
-      - verify-pep8
+      - noop
+
   - name: ^linaDevel/nemesis$
     verify:
       - verify-nemesis
     qa:
+      - gate-check-python-pep8
+      - gate-check-shell-scripts
       - gate-check-trailing-whitespaces
     post:
       - gate-nemesis
+
   - name: ^linaDevel/nemesisConfig$
     verify:
       - gate-validate-nemesis-config
     qa:
+      - gate-check-python-pep8
+      - gate-check-shell-scripts
       - gate-check-trailing-whitespaces
     post:
       - gate-install-nemesis-config
+
   - name: ^linaDevel/darkGerritTheme$
     verify:
       - noop
     qa:
+      - gate-check-python-pep8
+      - gate-check-shell-scripts
       - gate-check-trailing-whitespaces
     post:
       - post-install-gerrit-theme
+
+  - name: ^linaDevel/usefullScripts$
+    verify:
+      - noop
+    qa:
+      - gate-check-python-pep8
+      - gate-check-shell-scripts
+      - gate-check-trailing-whitespaces
+    post:
+      - noop
+
   - name: ^yggdrasilProject/.*$
     verify:
       - gate-verify-yggdrasil
     qa:
+      - gate-check-python-pep8
+      - gate-check-shell-scripts
       - gate-check-trailing-whitespaces
     post:
       - gate-build-yggdrasil
