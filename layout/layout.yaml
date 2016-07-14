@@ -119,7 +119,7 @@ projects:
       - gate-build-yggdrasil
   - name: ^infernoProject/.*$
     verify:
-      - gate-verify-infenro
+      - gate-verify-inferno
     qa:
       - gate-check-python-pep8
       - gate-check-shell-scripts
