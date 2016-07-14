@@ -3,17 +3,13 @@ jobs:
     builders:
      MavenBuilder:
       target:
-       - clean
-       - compile
-       - assembly:single
+       - package
       copyJar: true
   - name: gate-build-inferno
     builders:
      MavenBuilder:
       target:
-       - clean
-       - compile
-       - assembly:single
+       - package
       copyJar: true
     publishers:
      LocalPublisher:
