@@ -119,6 +119,4 @@ projects:
       - gate-build-yggdrasil
   - name: ^openstack/.*$
     qa:
-      - gate-check-python-pep8
-      - gate-check-shell-scripts
-      - gate-check-trailing-whitespaces
+      - noop
