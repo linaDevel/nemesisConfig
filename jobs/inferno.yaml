@@ -1,0 +1,22 @@
+jobs:
+  - name: gate-verify-inferno
+    builders:
+     MavenBuilder:
+      target:
+       - clean
+       - compile
+       - assembly:single
+      copyJar: true
+  - name: gate-build-inferno
+    builders:
+     MavenBuilder:
+      target:
+       - clean
+       - compile
+       - assembly:single
+      copyJar: true
+    publishers:
+     LocalPublisher:
+      source: '*.jar'
+      target: /var/www/artifacts/inferno
+      checksum: true
