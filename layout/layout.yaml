@@ -107,7 +107,15 @@ projects:
       - gate-check-trailing-whitespaces
     post:
       - noop
-
+  - name: ^linaDevel/plexAgents$
+    verify:
+     - noop
+    qa:
+      - gate-check-python-pep8
+      - gate-check-shell-scripts
+      - gate-check-trailing-whitespaces
+    post:
+      - noop
   - name: ^yggdrasilProject/.*$
     verify:
       - gate-verify-yggdrasil
