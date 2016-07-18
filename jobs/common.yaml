@@ -31,4 +31,9 @@ jobs:
      script: |
       #!/bin/bash -xe
       pip install pep8
-      pep8 ${WORKSPACE}/source/
+
+      if [[ -f "${WORKSPACE}/source/.no8" ]]; then
+          pep8 ${WORKSPACE}/source/ --exclude "$(cat ${WORKSPACE}/source/.no8)"
+      else
+          pep8 ${WORKSPACE}/source/
+      fi
