@@ -14,7 +14,7 @@ jobs:
     publishers:
      LocalPublisher:
       source: '*.jar'
-      target: /var/www/artifacts/nemesis/${NEMESIS_BRANCH}/
+      target: /var/www/artifacts/nemesis/
       checksum: true
   - name: gate-validate-nemesis-config
     builders:
