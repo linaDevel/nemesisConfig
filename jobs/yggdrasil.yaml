@@ -16,3 +16,21 @@ jobs:
       source: '*.jar'
       target: /var/www/artifacts/yggdrasil
       checksum: true
+  - name: gate-verify-yggdrasil-plugin
+    builders:
+     MavenBuilder:
+      target:
+       - package
+      copyJar: true
+  - name: gate-build-yggdrasil-plugin
+    builders:
+     MavenBuilder:
+      target:
+       - package
+      copyJar: true
+    publishers:
+     LocalPublisher:
+      source: '*.jar'
+      target: /var/www/artifacts/yggdrasil-plugins
+      checksum: true
+

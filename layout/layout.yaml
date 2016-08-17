@@ -116,7 +116,16 @@ projects:
       - gate-check-trailing-whitespaces
     post:
       - noop
-  - name: ^yggdrasilProject/.*$
+  - name: ^yggdrasilProject/.*Plugin$
+    verify:
+      - gate-verify-yggdrasil-plugin
+    qa:
+      - gate-check-python-pep8
+      - gate-check-shell-scripts
+      - gate-check-trailing-whitespaces
+    post:
+      - gate-build-yggdrasil-plugin
+  - name: ^yggdrasilProject/yggdrasil.*$
     verify:
       - gate-verify-yggdrasil
     qa:
