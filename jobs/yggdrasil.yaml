@@ -4,16 +4,20 @@ jobs:
      MavenBuilder:
       target:
        - package
-      copyJar: true
   - name: gate-build-yggdrasil
     builders:
      MavenBuilder:
       target:
        - package
-      copyJar: true
+     ShellBuilder:
+      script: |
+       #!/bin/bash
+       bash -xe "${WORKSPACE}/source/tools/prepare_tarball.sh"
+       mkdir -p "${WORKSPACE}/artifacts/"
+       cp "${WORKSPACE}/source/*.tar.gz" "${WORKSPACE}/artifacts/"
     publishers:
      LocalPublisher:
-      source: '*.jar'
+      source: '*.tar.gz'
       target: /var/www/artifacts/yggdrasil
       checksum: true
   - name: gate-verify-yggdrasil-plugin
@@ -21,13 +25,11 @@ jobs:
      MavenBuilder:
       target:
        - package
-      copyJar: true
   - name: gate-build-yggdrasil-plugin
     builders:
      MavenBuilder:
       target:
        - package
-      copyJar: true
     publishers:
      LocalPublisher:
       source: '*.jar'
