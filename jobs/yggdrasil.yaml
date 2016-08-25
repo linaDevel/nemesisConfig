@@ -6,9 +6,6 @@ jobs:
        - package
   - name: gate-build-yggdrasil
     builders:
-     MavenBuilder:
-      target:
-       - package
      ShellBuilder:
       script: |
        #!/bin/bash
@@ -24,12 +21,16 @@ jobs:
     builders:
      MavenBuilder:
       target:
-       - package
+       - clean
+       - compile
+       - assembly:single
   - name: gate-build-yggdrasil-plugin
     builders:
      MavenBuilder:
       target:
-       - package
+       - clean
+       - compile
+       - assembly:single
     publishers:
      LocalPublisher:
       source: '*.jar'
