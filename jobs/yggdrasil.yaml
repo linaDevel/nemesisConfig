@@ -11,7 +11,8 @@ jobs:
        #!/bin/bash
        bash -xe "${WORKSPACE}/source/tools/prepare_tarball.sh"
        mkdir -p "${WORKSPACE}/artifacts/"
-       cp "${WORKSPACE}/source/*.tar.gz" "${WORKSPACE}/artifacts/"
+       TAR_FILE=$(basename $(find "${WORKSPACE}/source/" -maxdepth 1 -name '*.tar.gz' | tail -1))
+       cp "${WORKSPACE}/source/${TAR_FILE}" "${WORKSPACE}/artifacts/"
     publishers:
      LocalPublisher:
       source: '*.tar.gz'
