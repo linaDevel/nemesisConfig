@@ -153,3 +153,5 @@ projects:
       - gate-check-python-pep8
       - gate-check-shell-scripts
       - gate-check-trailing-whitespaces
+    post:
+      - noop
