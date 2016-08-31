@@ -98,7 +98,7 @@ projects:
     post:
       - post-install-gerrit-theme
 
-  - name: ^linaDevel/usefullScripts$
+  - name: ^linaDevel/.*Scripts$
     verify:
       - noop
     qa:
