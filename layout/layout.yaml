@@ -146,3 +146,10 @@ projects:
   - name: ^openstack/.*$
     qa:
       - noop
+  - name: ^v0rt3xProject/.*$
+    verify:
+      - noop
+    qa:
+      - gate-check-python-pep8
+      - gate-check-shell-scripts
+      - gate-check-trailing-whitespaces
