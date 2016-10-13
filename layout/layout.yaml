@@ -146,6 +146,15 @@ projects:
   - name: ^openstack/.*$
     qa:
       - noop
+  - name: ^v0rt3xProject/vindicator.*$
+    verify:
+      - gate-verify-vindicator
+    qa:
+      - gate-check-python-pep8
+      - gate-check-shell-scripts
+      - gate-check-trailing-whitespaces
+    post:
+      - gate-build-vindicator
   - name: ^v0rt3xProject/.*$
     verify:
       - noop

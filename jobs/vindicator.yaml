@@ -1,0 +1,20 @@
+jobs:
+  - name: gate-verify-vindicator
+    builders:
+     MavenBuilder:
+      target:
+       - package
+  - name: gate-build-vindicator
+    builders:
+     ShellBuilder:
+      script: |
+       #!/bin/bash
+       bash -xe "${WORKSPACE}/source/tools/prepare_tarball.sh"
+       mkdir -p "${WORKSPACE}/artifacts/"
+       TAR_FILE=$(basename $(find "${WORKSPACE}/source/" -maxdepth 1 -name '*.tar.gz' | tail -1))
+       cp "${WORKSPACE}/source/${TAR_FILE}" "${WORKSPACE}/artifacts/"
+    publishers:
+     LocalPublisher:
+      source: '*.tar.gz'
+      target: /var/www/artifacts/vindicator
+      checksum: true
