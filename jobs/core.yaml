@@ -6,13 +6,9 @@ jobs:
        - package
   - name: gate-build-core
     builders:
-     ShellBuilder:
-      script: |
-       #!/bin/bash
-       bash -xe "${WORKSPACE}/source/tools/prepare_tarball.sh"
-       mkdir -p "${WORKSPACE}/artifacts/"
-       TAR_FILE=$(basename $(find "${WORKSPACE}/source/" -maxdepth 1 -name '*.tar.gz' | tail -1))
-       cp "${WORKSPACE}/source/${TAR_FILE}" "${WORKSPACE}/artifacts/"
+     MavenBuilder:
+      target:
+       - package
     publishers:
      LocalPublisher:
       source: '*.tar.gz'
