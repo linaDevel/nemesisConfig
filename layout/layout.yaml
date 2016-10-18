@@ -116,6 +116,15 @@ projects:
       - gate-check-trailing-whitespaces
     post:
       - noop
+  - name: ^linaDevel/genericCore*$
+    verify:
+      - gate-verify-core
+    qa:
+      - gate-check-python-pep8
+      - gate-check-shell-scripts
+      - gate-check-trailing-whitespaces
+    post:
+      - gate-build-core
   - name: ^yggdrasilProject/.*Plugin$
     verify:
       - gate-verify-yggdrasil-plugin
