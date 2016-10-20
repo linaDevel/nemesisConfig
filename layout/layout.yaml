@@ -125,6 +125,15 @@ projects:
       - gate-check-trailing-whitespaces
     post:
       - gate-build-core
+  - name: ^linaDevel/observer$
+    verify:
+      - gate-verify-observer
+    qa:
+      - gate-check-python-pep8
+      - gate-check-shell-scripts
+      - gate-check-trailing-whitespaces
+    post:
+      - gate-build-observer
   - name: ^yggdrasilProject/.*Plugin$
     verify:
       - gate-verify-yggdrasil-plugin
